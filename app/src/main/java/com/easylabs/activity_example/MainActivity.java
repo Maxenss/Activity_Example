@@ -3,6 +3,7 @@ package com.easylabs.activity_example;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etLogin;
     EditText etPassword;
     Button btSignIn;
+    Button btShowPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         etLogin = (EditText) findViewById(R.id.etLogin);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btSignIn = (Button) findViewById(R.id.btSignIn);
+        btShowPassword = (Button) findViewById(R.id.btShowPassword);
 
         btSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +46,17 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+
+        btShowPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b)
+                    etPassword.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+                else
+                    etPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         });
     }
